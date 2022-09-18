@@ -57,6 +57,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     //fetchData();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: _color3,
