@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -37,15 +37,18 @@ class _MyAppState extends State<MyApp> {
   bool change = false;
   Color _color1 = Color.fromARGB(220, 0, 0, 0);
   Color _color2 = Colors.white;
+  Color _color3 = Color.fromARGB(255, 85, 224, 192);
 
   void changeCol() {
     setState(() {
       if (change == false) {
         _color1 = Color.fromARGB(220, 0, 0, 0);
         _color2 = Colors.white;
+        _color3 = Color.fromARGB(255, 85, 224, 192);
       } else {
         _color1 = Colors.white;
         _color2 = Color.fromARGB(220, 0, 0, 0);
+        _color3 = Colors.purple;
       }
     });
   }
@@ -56,11 +59,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Center(
+          backgroundColor: _color3,
+          title: Center(
             child: Text(
               'Random Activity',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: _color1),
             ),
           ),
         ),
@@ -70,7 +73,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               Center(
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   height: 500,
                   child: Text(
                     activity,
@@ -84,54 +87,72 @@ class _MyAppState extends State<MyApp> {
                   Align(
                     child: SizedBox(
                       width: 100,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            _color2,
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            colors: [_color3, _color2],
                           ),
                         ),
-                        onPressed: fetchData,
-                        child: Text(
-                          'Click Me',
-                          style: TextStyle(
-                            color: _color1,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              //_color2,
+                              Colors.transparent,
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                          onPressed: fetchData,
+                          child: Text(
+                            'Click Me',
+                            style: GoogleFonts.ubuntu(
+                              color: _color1,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 50,
                   ),
                   Align(
                     child: SizedBox(
                       width: 150,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            _color2,
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            colors: [_color3, _color2],
                           ),
                         ),
-                        onPressed: () {
-                          change = !change;
-                          changeCol();
-                        },
-                        child: Text(
-                          'Change Theme',
-                          style: TextStyle(
-                            color: _color1,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              //_color2,
+                              Colors.transparent,
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            change = !change;
+                            changeCol();
+                          },
+                          child: Text(
+                            'Change Theme',
+                            style: GoogleFonts.ubuntu(
+                              color: _color1,
+                            ),
                           ),
                         ),
                       ),
